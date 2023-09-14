@@ -9,6 +9,10 @@ public class DataContext : DbContext
     {
     }
 
+    // public internal void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
+    //     optionsBuilder.EnableThreadSafetyChecks(false);
+    // }
+
     public DbSet<Activity> Activities { get; set; }
-    
+
 }

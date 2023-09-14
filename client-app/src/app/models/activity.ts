@@ -2,7 +2,7 @@ export interface Activity{
     id: string
     title: string
     date: string
-    descritpion: string
+    description: string
     category: string
     city: string
     venue: string
