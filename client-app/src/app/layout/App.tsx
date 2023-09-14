@@ -5,12 +5,14 @@ import NavBar from './NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import { v4 as uuidv4 } from 'uuid';
 import agent from '../api/agent';
+import LoadingComponent from './loadingComponent';
 
 function App() {
 
   const [activities, setActivities] = useState<Activity[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=>{
     agent.Activities.list().then( response => {
@@ -20,6 +22,7 @@ function App() {
         activities.push(activity);
       })
       setActivities(activities);
+      setLoading(false);
     })
   }, []);
 
@@ -50,6 +53,8 @@ function App() {
   function handleDeleteActivity(id : string){
     setActivities([...activities.filter(activity => activity.id !== id)])
   }
+
+  if(loading) return <LoadingComponent content='Loading app' />
 
   return (
     <>
